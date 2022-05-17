@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="view_attendance_attendee_tree" model="ir.ui.view">
+        <field name="name">attendance.attendee.tree</field>
+        <field name="model">attendance.attendee</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="register_date"/>
+                <field name="last_date"/>
+                <field name="total_time"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_attendance_attendee_form" model="ir.ui.view">
+        <field name="name">attendance.attendee.form</field>
+        <field name="model">attendance.attendee</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                        <group>
+                            <field name="register_date"/>
+                            <field name="last_date"/>
+                            <field name="total_time"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="action_attendance_attendee" model="ir.actions.act_window">
+        <field name="name">Attendance</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">attendance.attendee</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first attendance !
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_attendance_root"
+              name="Attendance"/>
+
+    <menuitem id="menu_attendance"
+              parent="menu_attendance_root"
+              name="Attendance"
+              action="action_attendance_attendee"
+              sequence="0"/>
+
+</odoo>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="view_client_staff_client_employee_tree" model="ir.ui.view">
+        <field name="name">client_staff.client_employee.tree</field>
+        <field name="model">client_staff.client_employee</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="gender"/>
+                <field name="comapny_name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_client_staff_client_employee_form" model="ir.ui.view">
+        <field name="name">client_staff.client_employee.form</field>
+        <field name="model">client_staff.client_employee</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div width="150">
+                        <h2>
+                            <field name="title"/>
+                        </h2>
+                    </div>
+                    <div width="250">
+                        <h1>
+                            <field name="name" placeholder="Employee's Name"/>
+                        </h1>
+                    </div>
+
+                    <group>
+                        <group>
+                            <field name="gender"/>
+                            <field name="address"/>
+                        </group>
+                        <group>
+                            <field name="job_title"/>
+                            <field name="comapny_name"/>
+                            <field name="email"/>
+                            <field name="phone_number"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Notes">
+                            <field name="notes"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="action_client_staff_client_employee" model="ir.actions.act_window">
+        <field name="name">Client's Staff</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">client_staff.client_employee</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first Client !
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_client_staff_root"
+              name="Client's Staff"/>
+
+    <menuitem id="menu_client_staff"
+              parent="menu_client_staff_root"
+              name="Client's Employees"
+              action="action_client_staff_client_employee"
+              sequence="0"/>
+
+</odoo>
