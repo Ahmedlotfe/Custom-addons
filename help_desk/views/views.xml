@@ -39,7 +39,7 @@
     <menuitem id="menu_help_desk_master"
               parent="menu_help_desk_root"
               name="Configuration"
-              sequence="0"/>
+              sequence="1"/>
 
     <menuitem id="menu_help_desk"
               parent="menu_help_desk_master"

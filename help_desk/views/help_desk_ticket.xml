@@ -1,0 +1,112 @@
+<odoo>
+
+    <record id="view_help_desk_ticket_form" model="ir.ui.view">
+        <field name="name">help_desk_ticket.tree</field>
+        <field name="model">help_desk.ticket</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_test" string="Approve" confirm="Are you sure to run Python code ?" type="object" class="oe_highlight"/>
+                    <button name="action_test" string="Reply" confirm="Are you sure to run Python code ?" type="object" class="oe_highlight"/>
+                    <button name="action_test" string="Send By Whatsapp" confirm="Are you sure to run Python code ?" type="object" class="oe_highlight"/>
+                    <button name="action_test" string="Preview" confirm="Are you sure to run Python code ?" type="object" class="oe_highlight"/>
+                    <button name="action_test" string="Approve" confirm="Are you sure to run Python code ?" type="object" class="oe_highlight"/>
+                    <button name="action_test" string="$ Create Sale Order" confirm="Are you sure to run Python code ?" type="object" class="oe_highlight"/>
+                    <button name="action_test" string="Create Purchase Order" confirm="Are you sure to run Python code ?" type="object" class="oe_highlight"/>
+                    <button name="action_test" string="Create Invoice" confirm="Are you sure to run Python code ?" type="object" class="oe_highlight"/>
+                    <button name="action_test" string="Create lead" confirm="Are you sure to run Python code ?" type="object" class="oe_highlight"/>
+                    <button name="action_test" string="Create Opportunity" confirm="Are you sure to run Python code ?" type="object" class="oe_highlight"/>
+                    <button name="action_test" string="Start Ticket" confirm="Are you sure to run Python code ?" type="object" class="oe_highlight"/>
+                    <button name="action_test" string="Create Task" confirm="Are you sure to run Python code ?" type="object" class="oe_highlight"/>
+                    <field name="status" widget="statusbar" nolabel="1"/>
+                </header>
+                <sheet>
+                    <div style="width:75%;">
+                        <h1>
+                            <field name="email_subject" placeholder="Email Subject ...."/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="company_id"/>
+                            <field name="state"/>
+                            <field name="ticket_type"/>
+                            <field name="team_id"/>
+                            <field name="team_head"/>
+                            <field name="user_id"/>
+                            <field name="subject_id"/>
+                            <field name="tags_ids" widget="many2many_tags"/>
+                            <field name="priority"/>
+                            <field name="duration"/>
+                        </group>
+                        <group>
+                            <field name="create_date"/>
+                            <field name="write_date"/>
+                            <field name="sh_due_date"/>
+                            <field name="partner_id"/>
+                            <field name="person_name"/>
+                            <field name="email"/>
+                            <field name="mobile_no"/>
+                            <field name="replied_date"/>
+                            <field name="sh_ticket_alarm_ids" widget="many2many_tags"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Description">
+                            <group>
+                                <field name="description"/>
+                            </group>
+                        </page>
+                        <page string="Attachment">
+                            <field name="attachment_ids"/>
+                        </page>
+                        <page string="Timesheets">
+                            <field name="timesheet_ids"/>
+                        </page>
+                        <page string="Other Information">
+                            <group>
+
+                                <group>
+                                    <h2 style="margin-bottom: 20; color:#00A9C6;">Ticket Closed Information</h2>
+                                    <field name="close_date"/>
+                                    <field name="close_by"/>
+                                    <field name="comment"/>
+                                </group>
+
+                                <group>
+                                    <h2 style="margin-bottom: 20; color:#00A9C6;">Ticket Cancelled Information</h2>
+                                    <field name="cancel_date"/>
+                                    <field name="cancelled_by"/>
+                                    <field name="cancel_reason"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <!--       Chatter         -->
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids" options="{'post_refresh': 'recipients'}"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="action_help_desk_ticket" model="ir.actions.act_window">
+        <field name="name">Tickets</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">help_desk.ticket</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <menuitem id="menu_help_desk_alarm"
+              parent="menu_help_desk_root"
+              name="Tickets"
+              action="action_help_desk_ticket"
+              sequence="0"/>
+
+</odoo>

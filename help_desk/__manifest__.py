@@ -20,7 +20,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', "mail", "portal"],
+    'depends': ['base', "mail", "portal","mail"],
 
     # always loaded
     'data': [
@@ -35,6 +35,8 @@
         'views/help_desk_priorities.xml',
         'views/help_desk_sla_policies.xml',
         'views/help_desk_alarm.xml',
+        'views/help_desk_ticket.xml',
+        'views/help_desk_send_quickly_reply.xml',
 
     ],
     # only loaded in demonstration mode

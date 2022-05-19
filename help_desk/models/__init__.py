@@ -11,3 +11,4 @@ from . import subject_type
 from . import tags
 from . import tickets
 from . import ticket_type
+from . import send_quick_reply

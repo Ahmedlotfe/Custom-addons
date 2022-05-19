@@ -5,6 +5,7 @@ from odoo import models, fields, api
 
 class help_desk_ticket(models.Model):
     _name = 'help_desk.ticket'
+    _inherit = ['mail.thread', 'mail.activity.mixin']
 
     email_subject = fields.Char()
     company_id = fields.Many2one('res.company', readonly=True, default=lambda self: self.env.company)
@@ -15,7 +16,7 @@ class help_desk_ticket(models.Model):
 
     ticket_type = fields.Many2one('help_desk.ticket.type', string="Ticket Type")
     team_id = fields.Many2one('help_desk.team', string="Team")
-    team_head = fields.Many2one('res.users', string="Team Head", readonly=True)
+    team_head = fields.Many2one('res.users', string="Team Head", compute="_get_team_head", readonly=True)
     user_id = fields.Many2one('res.users', string="Assigned User")
     subject_id = fields.Many2one('help_desk.subject.type', string="Ticket Subject Type")
     tags_ids = fields.Many2many('help_desk.tag', string="Tags")
@@ -29,7 +30,7 @@ class help_desk_ticket(models.Model):
     email = fields.Char(string="Email")
     mobile_no = fields.Char(string="Mobile")
     replied_date = fields.Datetime(string="Replied Date")
-    sh_ticket_alarm_ids = fields.Many2many('help_desk.alarm')
+    sh_ticket_alarm_ids = fields.Many2many('help_desk.alarm', string="Ticket Reminders")
     description = fields.Html(string="Description")
     attachment_ids = fields.Many2many('ir.attachment')
     timesheet_ids = fields.Many2many('account.analytic.line')
@@ -39,8 +40,29 @@ class help_desk_ticket(models.Model):
     cancel_date = fields.Datetime(string="Cancelled Date")
     cancelled_by = fields.Many2one('res.users', string="Cancelled By")
     cancel_reason = fields.Char(string="Cancel Reason")
+    status = fields.Selection([
+        ('new', 'New'),
+        ('in_progress', 'In Progress'),
+        ('done', 'Done'),
+        ('closed', 'Closed'),
+        ('cancel', 'Cancel'),
+        ('reopened', 'Reopened')], default='new', string="Status", required=True)
 
     @api.onchange('partner_id')
-    def onchange_patient_id(self):
-        self.person_name = self.patient_id.name
-        self.email = self.patient_id.email
+    def onchange_partner_id(self):
+        self.person_name = self.partner_id.name
+        self.email = self.partner_id.email
+
+
+
+    @api.depends('team_id')
+    def _get_team_head(self):
+        for rec in self:
+            if rec.team_id:
+                rec.team_head = rec.team_id.team_head
+            else:
+                rec.team_head = ""
+
+
+    def action_test(self):
+        print("Hello! World")

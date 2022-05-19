@@ -12,6 +12,9 @@ access.help_desk.priorities,access_help_desk_priorities,model_help_desk_prioriti
 access.help_desk.sla_policies,access_help_desk_sla_policies,model_help_desk_sla_policies,base.group_user,1,1,1,1
 access.help_desk.alarm,access_help_desk_alarm,model_help_desk_alarm,base.group_user,1,1,1,1
 
+access.help_desk.ticket,access_help_desk_ticket,model_help_desk_ticket,base.group_user,1,1,1,1
+access.help_desk.send_quick_reply,access_help_desk_send_quick_reply,model_help_desk_send_quick_reply,base.group_user,1,1,1,1
+
 
 
 
