@@ -1,0 +1,51 @@
+<odoo>
+
+    <record id="view_help_desk_sla_policies_form" model="ir.ui.view">
+        <field name="name">help_desk_sla_policies.tree</field>
+        <field name="model">help_desk.sla_policies</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div width="200">
+                        <field name="name"/>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="sh_team_id"/>
+                            <field name="company_id"/>
+                        </group>
+                        <group>
+                            <field name="sh_ticket_type_id"/>
+                        </group>
+                    </group>
+                    <h1 style="color:#00A09D;">SLA Target</h1>
+                    <group>
+                        <group>
+                            <field name="sh_sla_target_type" widget="radio"/>
+                            <field name="sh_stage_id"/>
+                        </group>
+                        <group>
+                            <field name="sh_days"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="action_help_desk_sla_policies" model="ir.actions.act_window">
+        <field name="name">Helpdesk SLA Policies</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">help_desk.sla_policies</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <menuitem id="menu_help_desk_sla_policies"
+              parent="menu_help_desk_master"
+              name="Helpdesk SLA Policies"
+              action="action_help_desk_sla_policies"
+              sequence="8"/>
+
+</odoo>

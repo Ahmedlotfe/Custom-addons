@@ -1,0 +1,41 @@
+<odoo>
+
+    <record id="view_help_desk_stage_form" model="ir.ui.view">
+        <field name="name">help_desk.help_desk.tag.tree</field>
+        <field name="model">help_desk.stage</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="main_template_ids" widget="many2many_tags"/>
+                            <field name="is_cancel_button_visible"/>
+                            <field name="is_done_button_visible"/>
+                        </group>
+                        <group>
+                            <field name="sh_next_stage"/>
+                            <field name="sh_group_ids" widget="many2many_tags"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="action_help_desk_stage" model="ir.actions.act_window">
+        <field name="name">Helpdesk Stages</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">help_desk.stage</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <menuitem id="menu_help_desk_stage"
+              parent="menu_help_desk_master"
+              name="Helpdesk Stages"
+              action="action_help_desk_stage"
+              sequence="4"/>
+
+</odoo>

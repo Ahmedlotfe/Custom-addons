@@ -1,0 +1,40 @@
+<odoo>
+
+    <record id="view_help_desk_alarm_form" model="ir.ui.view">
+        <field name="name">help_desk_alarm.tree</field>
+        <field name="model">help_desk.alarm</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="sh_reminder_before"/>
+                            <field name="sh_reminder_unit"/>
+                        </group>
+                        <group>
+                            <field name="type"/>
+                            <field name="company_id"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="action_help_desk_alarm" model="ir.actions.act_window">
+        <field name="name">Helpdesk Ticket Alarm</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">help_desk.alarm</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <menuitem id="menu_help_desk_alarm"
+              parent="menu_help_desk_master"
+              name="Helpdesk Ticket Alarm"
+              action="action_help_desk_alarm"
+              sequence="9"/>
+
+</odoo>

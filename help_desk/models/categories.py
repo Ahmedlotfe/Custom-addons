@@ -7,4 +7,8 @@ class help_desk_category(models.Model):
     _name = 'help_desk.category'
 
     name = fields.Char(string="Category Name")
+    active = fields.Boolean(
+        string="Active",
+        default=True,
+    )
 

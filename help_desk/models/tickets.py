@@ -7,7 +7,7 @@ class help_desk_ticket(models.Model):
     _name = 'help_desk.ticket'
 
     email_subject = fields.Char()
-    company_id = fields.Many2one('res.company', readonly=True)
+    company_id = fields.Many2one('res.company', readonly=True, default=lambda self: self.env.company)
     state = fields.Selection([
         ('customer_replied', 'Customer Replied'),
         ('staff_replied', 'Staff Replied')
@@ -39,8 +39,6 @@ class help_desk_ticket(models.Model):
     cancel_date = fields.Datetime(string="Cancelled Date")
     cancelled_by = fields.Many2one('res.users', string="Cancelled By")
     cancel_reason = fields.Char(string="Cancel Reason")
-
-
 
     @api.onchange('partner_id')
     def onchange_patient_id(self):

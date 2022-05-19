@@ -20,13 +20,22 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base'],
+    'depends': ['base', "mail", "portal"],
 
     # always loaded
     'data': [
-        # 'security/ir.model.access.csv',
+        'security/ir.model.access.csv',
         'views/views.xml',
-        'views/templates.xml',
+        'views/help_desk_ticket_type.xml',
+        'views/help_desk_subject_type.xml',
+        'views/help_desk_tag.xml',
+        'views/help_desk_stage.xml',
+        'views/help_desk_category.xml',
+        'views/help_desk_sub_category.xml',
+        'views/help_desk_priorities.xml',
+        'views/help_desk_sla_policies.xml',
+        'views/help_desk_alarm.xml',
+
     ],
     # only loaded in demonstration mode
     'demo': [
