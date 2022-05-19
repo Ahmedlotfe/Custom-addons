@@ -1,0 +1,12 @@
+<odoo>
+    <record id="view_custom_purchase_form" model="ir.ui.view">
+        <field name="name">custom_purchase.form</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_ref']" position="replace">
+                <field name="currency_id"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
