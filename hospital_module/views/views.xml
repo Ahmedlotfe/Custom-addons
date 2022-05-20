@@ -1,0 +1,86 @@
+<odoo>
+
+    <record id="view_hos_patient_tree" model="ir.ui.view">
+        <field name="name">hos.patient.tree</field>
+        <field name="model">hos.patient</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name_seq"/>
+                <field name="name"/>
+                <field name="patient_age"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_hos_patient_form" model="ir.ui.view">
+        <field name="name">hos.patient.form</field>
+        <field name="model">hos.patient</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet string="Patients">
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name_seq" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="patient_age"/>
+                            <field name="gender"/>
+                        </group>
+                        <group>
+                            <field name="notes"/>
+                            <field name="image"/>
+                            <field name="age_group"/>
+                        </group>
+                    </group>
+                </sheet>
+                <!--       Chatter         -->
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids" options="{'post_refresh': 'recipients'}"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="hos_patient_search" model="ir.ui.view">
+        <field name="name">hos.patient.search</field>
+        <field name="model">hos.patient</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name_seq"/>
+                <field name="name" filter_domain="['|', ('name', 'ilike', self), ('patient_age', 'ilike', self)]"/>
+                <field name="patient_age"/>
+                <separator/>
+                <filter name="Age" domain="[('patient_age', '=', '22')]"/>
+                <filter name="male_gender" string="Male Gender" domain="[('gender', '=', 'male')]"/>
+                <filter name="female_gender" string="Female Gender" domain="[('gender', '=', 'female')]"/>
+                <group>
+                    <filter string="Gender" name="group_by_gender" context="{'group_by': 'gender'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+
+    <record id="action_hos_patient" model="ir.actions.act_window">
+        <field name="name">Patients</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hos.patient</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'search_default_male_gender': 1, 'search_default_group_by_gender': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create First Patient
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="hos_root" name="Hos" sequence="0"/>
+    <menuitem id="hos_patient" name="Patient" parent="hos_root" action="action_hos_patient"/>
+
+</odoo>

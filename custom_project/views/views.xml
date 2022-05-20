@@ -1,0 +1,15 @@
+<odoo>
+    <record id="view_custom_project_form" model="ir.ui.view">
+        <field name="name">custom_project.form</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.project_project_view_form_simplified_footer"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="allow_timesheets"/>
+                <field name="allow_billable"/>
+                <field name="allow_recurring_tasks"/>
+                <field name="alias_name" placeholder="e.g. office-party"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
