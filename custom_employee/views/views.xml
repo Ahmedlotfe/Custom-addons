@@ -1,0 +1,53 @@
+<odoo>
+
+    <record id="view_employee_custody_form" model="ir.ui.view">
+        <field name="name">employee.custody.form</field>
+        <field name="model">employee.custody</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+
+                    <button name="get_delivered" string="Delivered" confirm="Are you sure Custody was Delivered?"
+                            type="object" class="oe_highlight"
+                            attrs="{'invisible': ['|', ('state', '=', 'delivered'), ('state', '=', 'returned')]}"/>
+
+                    <button name="get_returned" string="Returned" confirm="Are you sure Custody was Returned?"
+                            type="object" class="oe_highlight"
+                            attrs="{'invisible': ['|', ('state', '=', 'draft'), ('state', '=', 'returned')]}"/>
+
+                    <button name="get_draft" string="Draft" confirm="send Custody to Draft?"
+                            type="object" class="oe_highlight"
+                            attrs="{'invisible': ['|', ('state', '=', 'draft'), ('state', '=', 'delivered')]}"/>
+
+                    <field name="state" widget="statusbar" nolabel="1"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name_id"/>
+                            <field name="type"/>
+                            <field name="item_name"/>
+                            <field name="serial_number"/>
+                        </group>
+                        <group>
+                            <field name="date"/>
+                            <field name="amount"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_employee_custody" model="ir.actions.act_window">
+        <field name="name">Custody</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">employee.custody</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="employee_custody"
+              name="Custody"
+              parent="hr.menu_hr_root"
+              action="action_employee_custody"/>
+</odoo>

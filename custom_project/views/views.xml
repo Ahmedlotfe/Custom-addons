@@ -4,6 +4,7 @@
         <field name="model">project.project</field>
         <field name="inherit_id" ref="project.project_project_view_form_simplified_footer"/>
         <field name="arch" type="xml">
+
             <xpath expr="//field[@name='name']" position="after">
                 <field name="allow_timesheets"/>
                 <field name="allow_billable"/>

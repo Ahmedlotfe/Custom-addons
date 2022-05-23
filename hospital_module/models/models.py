@@ -4,13 +4,13 @@ from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError
 
 
-
 class HosPatient(models.Model):
     _name = 'hos.patient'
     _inherit = ['mail.thread', 'mail.activity.mixin']
     _description = 'Patient Record'
+    _order = 'id desc'
 
-    name = fields.Char(string="Name")
+    name = fields.Char(string="Name", required=True)
     patient_age = fields.Integer(string="Age", tracking=True)
     notes = fields.Text(string="Notes")
     image = fields.Binary(string="Image")
@@ -24,6 +24,7 @@ class HosPatient(models.Model):
         ('major', 'Major'),
         ('minor', 'Minor'),
     ], string="Age Group", compute="_get_group", readonly=True)
+    appointment_count = fields.Integer(string="Appointment", compute="_get_appointment_count")
 
     @api.model
     def create(self, vals):
@@ -43,9 +44,23 @@ class HosPatient(models.Model):
             else:
                 rec.age_group = ''
 
-
     @api.constrains('patient_age')
     def check_age(self):
         for rec in self:
             if rec.patient_age <= 5:
                 raise ValidationError("The age must be greater than 5")
+
+    def open_patient_appointments(self):
+        return {
+            'name': _('Appointments'),
+            'domain': [('patient_id', '=', self.id)],
+            'view_type': 'form',
+            'res_model': 'hos.appointment',
+            'view_id': False,
+            'view_mode': 'tree,form',
+            'type': 'ir.actions.act_window',
+        }
+
+    def _get_appointment_count(self):
+        for rec in self:
+            rec.appointment_count = self.env['hos.appointment'].search_count([('patient_id', '=', self.id)])

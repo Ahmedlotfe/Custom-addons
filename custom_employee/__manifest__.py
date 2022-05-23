@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "hospital_module",
+    'name': "custom_employee",
 
     'summary': """
         Short (1 phrase/line) summary of the module's purpose, used as
@@ -20,15 +20,14 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'mail'],
+    'depends': ['hr'],
 
     # always loaded
     'data': [
         'security/ir.model.access.csv',
         'views/views.xml',
         'views/templates.xml',
-        'data/sequence.xml',
-        'views/appointment.xml'
+        'views/custom_employee.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

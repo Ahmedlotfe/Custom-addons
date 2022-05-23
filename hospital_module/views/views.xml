@@ -1,5 +1,18 @@
 <odoo>
 
+    <record id="action_hos_appointment" model="ir.actions.act_window">
+        <field name="name">Appointments</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hos.appointment</field>
+        <field name="domain">[('patient_id', '=', active_id)]</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create First Appointment
+            </p>
+        </field>
+    </record>
+
     <record id="view_hos_patient_tree" model="ir.ui.view">
         <field name="name">hos.patient.tree</field>
         <field name="model">hos.patient</field>
@@ -18,6 +31,19 @@
         <field name="arch" type="xml">
             <form>
                 <sheet string="Patients">
+                    <div class="oe_button_box" name="button_box">
+                        <button name="open_patient_appointments" type="object"
+                                class="oe_stat_button" icon="fa-calendar">
+                            <field name="appointment_count" string="Appointments" widget="statinfo"/>
+                        </button>
+
+                        <button name="%(action_hos_appointment)d" type="action"
+                                class="oe_stat_button" icon="fa-usd">
+                            <field name="appointment_count" string="Appointments" widget="statinfo"/>
+                        </button>
+                    </div>
+
+                    <field name="image" widget="image" class="oe_avatar"/>
                     <div class="oe_title">
                         <h1>
                             <field name="name_seq" readonly="1"/>
