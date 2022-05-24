@@ -20,7 +20,10 @@
             <tree>
                 <field name="name_seq"/>
                 <field name="name"/>
-                <field name="patient_age"/>
+                <!--        Display Average        -->
+                <!--                <field name="patient_age" avg="Average Of Ages"/>       -->
+                <!--        Display sum        -->
+                <field name="patient_age" sum="Total Of Ages"/>
             </tree>
         </field>
     </record>

@@ -5,6 +5,7 @@ from odoo import models, fields, api
 
 class Employee_Custody(models.Model):
     _name = 'employee.custody'
+    _rec_name = 'name_id'
 
     name_id = fields.Many2one('hr.employee', string="Name", required=True)
     type = fields.Selection([

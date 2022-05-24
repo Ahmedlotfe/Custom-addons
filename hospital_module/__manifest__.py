@@ -28,7 +28,8 @@
         'views/views.xml',
         'views/templates.xml',
         'data/sequence.xml',
-        'views/appointment.xml'
+        'views/appointment.xml',
+        'reports/report.xml'
     ],
     # only loaded in demonstration mode
     'demo': [

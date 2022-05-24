@@ -64,3 +64,15 @@ class HosPatient(models.Model):
     def _get_appointment_count(self):
         for rec in self:
             rec.appointment_count = self.env['hos.appointment'].search_count([('patient_id', '=', self.id)])
+
+
+class ResPartners(models.Model):
+    _inherit = 'res.partner'
+
+    # Override Create Function
+    @api.model
+    def create(self, vals_list):
+        res = super(ResPartners, self).create(vals_list)
+        print("Yes, Working")
+        # do the custom coding here
+        return res
